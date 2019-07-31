@@ -1,18 +1,54 @@
-# Add your imports here; numpy is only used as an example
-import numpy as np
+import pandas as pd
 
-def my_algorithm(in_file, out_file):
-    with open(in_file, "r") as fpin, open(out_file, "w") as fpout:
-        for l in fpin.readlines():
-            try:
-                x, y = [float(i) for i in l.strip().split()]
-            except ValueError:
-                continue
-            fpout.write("{} {} {}\n".format(x, y**2, x*np.pi))
+from pathlib import Path
+
+from sklearn import svm
+
+
+def train_svm(in_file):
+    # Read the training file
+    train = pd.read_csv(in_file)
+
+    train_data = train[['sepal_length', 'sepal_width', 'petal_length',
+                        'petal_width']].values
+    train_targets = list(train['class'])
+
+    # Train the classifier
+    clf = svm.SVC(gamma=0.001, C=100.)
+    clf.fit(train_data, train_targets)
+
+    return clf
+
+
+def predict(clf, test_data_file):
+    test = pd.read_csv(test_data_file)
+
+    return clf.predict(test.values)
+
+
+def iris_svm(train_file, test_file, out_file):
+    """Train Support Vector Machines for the EYRA Demo Benchmark.
+    """
+    # Train classifier
+    clf = train_svm(train_file)
+
+    # Predict
+    pred = predict(clf, test_file)
+
+    print(pred)
+
+    output = pd.DataFrame()
+    output['class'] = pred
+
+    # Write the output to file
+    output.to_csv(out_file)
 
 
 if __name__ == "__main__":
     # Run the algorithm on your local copy of the data by typing:
-    # python algorithm_src/algorithm.py
-    my_algorithm('data/input/example_input_data.txt',
-                 'data/output/example_output_data.txt')
+    # python algorithm_scr/algorithm.py
+    train_file = Path('data')/'input'/'iris_train.csv'
+    test_file = Path('data')/'input'/'iris_public_test_data.csv'
+    out_file = Path('data')/'output'/'team_eyra.csv'
+
+    iris_svm(train_file, test_file, out_file)

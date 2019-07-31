@@ -1,4 +1,6 @@
-from algorithm import my_algorithm
+from pathlib import Path
+
+from algorithm import iris_svm
 
 class Submission(object):
     def run(self):
@@ -6,8 +8,11 @@ class Submission(object):
         own algorithm code here. Please do not change the class name
         (Submission) or the method name (run).
         """
-        my_algorithm("/input/example_input_data.txt",
-                     "/output/example_output_data.txt")
+        train_file = Path('/')/'input'/'iris_train.csv'
+        test_file = Path('/')/'input'/'iris_public_test_data.csv'
+        out_file = Path('/')/'output'/'team_eyra.csv'
+
+        iris_svm(train_file, test_file, out_file)
 
 
 # Please do not change anything below
