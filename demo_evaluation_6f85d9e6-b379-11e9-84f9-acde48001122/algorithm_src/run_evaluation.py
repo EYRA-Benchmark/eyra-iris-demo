@@ -1,4 +1,6 @@
-from algorithm import my_algorithm
+from pathlib import Path
+
+from algorithm import evaluate_iris
 
 class Evaluation(object):
     def run(self):
@@ -6,8 +8,11 @@ class Evaluation(object):
         own algorithm code here. Please do not change the class name
         (Evaluation) or the method name (run).
         """
-        my_algorithm("/input/example_input_data.txt",
-                     "/output/example_output_data.txt")
+        submission_file = Path('/')/'input'/'team_eyra.csv'
+        test_gt_file = Path('/')/'input'/'iris_public_test_gt.csv'
+        out_file = Path('/')/'output'/'iris_leaderboard.csv'
+
+        evaluate_iris(submission_file, test_gt_file, out_file)
 
 
 # Please do not change anything below
