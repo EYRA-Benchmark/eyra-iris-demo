@@ -1,4 +1,5 @@
 import os
+import json
 import pandas as pd
 
 from pathlib import Path
@@ -12,18 +13,20 @@ def evaluate_iris(submission_file, test_gt_file, out_file):
     df = pd.read_csv(submission_file)
     pred = list(df['class'])
 
-    f = metrics.f1_score(test_gt, pred, average='weighted')
     prec = metrics.precision_score(test_gt, pred, average='weighted')
     recall = metrics.recall_score(test_gt, pred, average='weighted')
+    f = metrics.f1_score(test_gt, pred, average='weighted')
 
-    out = pd.DataFrame([{'F1': f, 'Precision': prec, 'Recall': recall}])
-    print(out)
-    out.to_csv(out_file, index=None)
+    out = {'metrics': {'Precision': prec,
+                       'Recall': recall,
+                       'F1': f}}
+    with open(out_file, 'w') as f:
+        json.dump(out, f)
 
 
 if __name__ == "__main__":
     # Run the algorithm on your local copy of the data by typing:
     # python algorithm_src/algorithm.py
-    evaluate_iris(Path('data')/'input'/'team_eyra.csv',
+    evaluate_iris(Path('data')/'input'/'implementation_output',
                   Path('data')/'input'/'iris_public_test_gt.csv',
-                  Path('data')/'output'/'iris_leaderboard.csv')
+                  Path('data')/'output'/'output')

@@ -8,9 +8,10 @@ class Submission(object):
         own algorithm code here. Please do not change the class name
         (Submission) or the method name (run).
         """
-        train_file = Path('/')/'input'/'iris_train.csv'
-        test_file = Path('/')/'input'/'iris_public_test_data.csv'
-        out_file = Path('/')/'output'/'team_eyra.csv'
+        # These are the default file paths (names) for input and output
+        train_file = Path('/')/'data'/'input'/'iris_train.csv'
+        test_file = Path('/')/'data'/'input'/'test_data'
+        out_file = Path('/')/'data'/'output'/'implementation_output'
 
         iris_svm(train_file, test_file, out_file)
 

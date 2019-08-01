@@ -1,6 +1,6 @@
 FROM python:3.7-slim
 
-RUN mkdir -p /opt/algorithm /input /output
+RUN mkdir -p /opt/algorithm /data/input /data/output
 
 WORKDIR /opt/algorithm
 

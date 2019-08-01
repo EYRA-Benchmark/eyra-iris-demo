@@ -8,9 +8,10 @@ class Evaluation(object):
         own algorithm code here. Please do not change the class name
         (Evaluation) or the method name (run).
         """
-        submission_file = Path('/')/'input'/'team_eyra.csv'
-        test_gt_file = Path('/')/'input'/'iris_public_test_gt.csv'
-        out_file = Path('/')/'output'/'iris_leaderboard.csv'
+        # These are the default file paths (names) for input and output
+        submission_file = Path('/')/'data'/'input'/'implementation_output'
+        test_gt_file = Path('/')/'data'/'input'/'ground_truth'
+        out_file = Path('/')/'data'/'output'/'output'
 
         evaluate_iris(submission_file, test_gt_file, out_file)
 
