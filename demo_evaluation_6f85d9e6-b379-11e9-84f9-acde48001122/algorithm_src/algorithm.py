@@ -10,12 +10,13 @@ def evaluate_iris(submission_file, test_gt_file, out_file):
     test_gt = list(pd.read_csv(test_gt_file)['class'])
 
     df = pd.read_csv(submission_file)
+    pred = list(df['class'])
 
-    f = metrics.f1_score(test_gt, list(df['class']), average='weighted')
-    print(f)
+    f = metrics.f1_score(test_gt, pred, average='weighted')
+    prec = metrics.precision_score(test_gt, pred, average='weighted')
+    recall = metrics.recall_score(test_gt, pred, average='weighted')
 
-    out = pd.DataFrame()
-    out['F1'] = [f]
+    out = pd.DataFrame([{'F1': f, 'Precision': prec, 'Recall': recall}])
     print(out)
     out.to_csv(out_file, index=None)
 
