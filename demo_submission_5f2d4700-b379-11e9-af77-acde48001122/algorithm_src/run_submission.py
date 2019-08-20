@@ -9,11 +9,13 @@ class Submission(object):
         (Submission) or the method name (run).
         """
         # These are the default file paths (names) for input and output
-        train_file = Path('/')/'data'/'input'/'iris_train.csv'
         test_file = Path('/')/'data'/'input'/'test_data'
         out_file = Path('/')/'data'/'output'/'implementation_output'
 
-        iris_svm(train_file, test_file, out_file)
+        # Additional data required by the algorithm
+        model_file = Path(__file__).absolute().parent/'model'/'iris_svm_model'
+
+        iris_svm(model_file, test_file, out_file)
 
 
 # Please do not change anything below
