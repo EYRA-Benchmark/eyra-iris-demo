@@ -30,6 +30,11 @@ def save_model(clf, path):
     dump(clf, path)
 
 
+def predict(clf, test_data_file):
+    test = pd.read_csv(test_data_file)
+
+    return clf.predict(test.values)
+
 if __name__ == "__main__":
     # Create the model using a local copy of the data by typing:
     # python model_creation/train.py
@@ -46,3 +51,8 @@ if __name__ == "__main__":
 
     clf = train_svm(participant_data)
     save_model(clf, out_file)
+
+    # Test whether the prediction mechanics work
+    test_file = root/'data'/'iris_public_test_data.csv'
+    result = predict(clf, test_file)
+    print(result)
