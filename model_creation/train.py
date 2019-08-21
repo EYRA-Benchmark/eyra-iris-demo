@@ -26,7 +26,7 @@ def train_svm(in_file):
     return clf
 
 
-def save_classifier(clf, path):
+def save_model(clf, path):
     dump(clf, path)
 
 
@@ -41,8 +41,8 @@ if __name__ == "__main__":
     except FileExistsError:
         pass
 
-    train_file = Path(root)/'data'/'iris_train.csv'
-    out_file=Path(root)/submission_dir/'model'/'iris_svm_model'
+    participant_data = Path(root)/'data'/'iris_train.csv'
+    out_file = Path(root)/submission_dir/'model'/'iris_svm_model'
 
-    clf = train_svm(train_file)
-    save_classifier(clf, out_file)
+    clf = train_svm(participant_data)
+    save_model(clf, out_file)
