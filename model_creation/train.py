@@ -46,7 +46,7 @@ if __name__ == "__main__":
     except FileExistsError:
         pass
 
-    participant_data = Path(root)/'data'/'iris_train.csv'
+    participant_data = Path(root)/'data'/'iris_participant_data.csv'
     out_file = Path(root)/submission_dir/'model'/'iris_svm_model'
 
     clf = train_svm(participant_data)
