@@ -11,7 +11,7 @@ class Evaluation(object):
         # These are the default file paths (names) for input and output
         submission_file = Path('/')/'data'/'input'/'implementation_output'
         test_gt_file = Path('/')/'data'/'input'/'ground_truth'
-        out_file = Path('/')/'data'/'output'/'output'
+        out_file = Path('/')/'data'/'output'
 
         evaluate_iris(submission_file, test_gt_file, out_file)
 
