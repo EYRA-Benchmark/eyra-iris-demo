@@ -1,3 +1,5 @@
+import os
+import errno
 from pathlib import Path
 
 from algorithm import iris_svm_predict
@@ -14,6 +16,6 @@ class Submission(object):
 if __name__ == "__main__":
     # These are the default file paths (names) for input and output
     test_file = Path('/')/'data'/'input'/'test_data'
-    out_file = Path('/')/'data'/'output'/'implementation_output'
+    out_file = Path('/')/'data'/'output'
 
     Submission().run(test_file, out_file)
