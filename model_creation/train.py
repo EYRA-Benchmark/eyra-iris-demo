@@ -39,15 +39,9 @@ if __name__ == "__main__":
     # Create the model using a local copy of the data by typing:
     # python model_creation/train.py
     root = Path(__file__).absolute().parent.parent
-    submission_dir = 'iris_svm'
-
-    try:
-        os.makedirs(Path(root)/submission_dir/'src'/'model')
-    except FileExistsError:
-        pass
 
     participant_data = Path(root)/'data'/'iris_participant_data.csv'
-    out_file = Path(root)/submission_dir/'src'/'model'/'iris_svm_model'
+    out_file = Path(root)/'model_creation'/'iris_svm_model'
 
     clf = train_svm(str(participant_data))
     save_model(clf, out_file)
