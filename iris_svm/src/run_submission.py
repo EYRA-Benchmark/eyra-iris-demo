@@ -1,8 +1,8 @@
 import os
-import errno
 from pathlib import Path
 
-from algorithm import iris_svm_predict
+from submission import iris_svm_predict
+
 
 class Submission(object):
     def run(self, test_file, out_file):
