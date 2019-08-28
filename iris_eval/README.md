@@ -1,4 +1,4 @@
-# Demo_evaluation
+# 
 
 A evaluation Docker container for a benchmark on the
 [EYRA Benchmark Platform](https://www.eyrabenchmark.net).
