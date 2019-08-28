@@ -44,7 +44,7 @@ if __name__ == "__main__":
     out_file = Path(root)/'model_creation'/'iris_svm_model'
 
     clf = train_svm(str(participant_data))
-    save_model(clf, out_file)
+    save_model(clf, str(out_file))
 
     # Test whether the prediction mechanics work
     test_file = root/'data'/'iris_public_test_data.csv'
